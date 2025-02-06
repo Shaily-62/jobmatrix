@@ -26,7 +26,7 @@ root.geometry('643x562+50+50')
 # root.resizable(0,0)
 root.title = "UserSignup"
 # root.config(bg='#4A708B')
-bg1 = ImageTk.PhotoImage(file="images/bg1.png")
+bg1 = ImageTk.PhotoImage(file="images/bg2.png")
 bglabel=Label(root,image=bg1)
 bglabel.place(x=0,y=0)
 
@@ -52,7 +52,19 @@ eyeicon=PhotoImage(file='icons/eye.png',height=20,width=25)
 eyebutton=Button(root,image=eyeicon,bd=0,bg="white",cursor='hand2',command=hide)
 eyebutton.place(x=550,y=249)
 
-forgetButton=Button(root,text="Forget Password?",bd=0,bg="#4A708B",cursor='hand2',font=('Segoe UI Symbol',9,'bold'))
-forgetButton.place(x=460,y=280)
+forgetButton=Button(root,text="Forget Password?",bd=0,bg="#81CE81",cursor='hand2',font=('Segoe UI Symbol',8,'bold'))
+forgetButton.place(x=485,y=280)
+
+signinbt=Button(root,text='SignIn',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='green',cursor='hand2',bd=0)
+signinbt.place(x=398,y=325,height=30,width=150)
+
+orLine=Label(root,text="----------------OR----------------",font=('Segoe UI Symbol',16,'bold'),fg="green",bg="#81CE81")
+orLine.place(x=300,y=398)
+
+signup=Label(root,text="Dont have an account?",font=('Segoe UI Symbol',11,'bold'),fg="green",bg="#81CE81")
+signup.place(x=300,y=485)
+
+signupbt=Button(root,text='Create Account',font=('Segoe UI Symbol',9,'bold'),fg='white',bg='green',cursor='hand2',bd=0,activebackground='#81CE81')
+signupbt.place(x=480,y=485,height=30,width=150)
 
 root.mainloop()
