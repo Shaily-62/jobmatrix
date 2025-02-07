@@ -41,7 +41,7 @@ bg1 = ImageTk.PhotoImage(file="images/signupBG.png")
 bglabel=Label(root,image=bg1)
 bglabel.place(x=0,y=0)
 
-username = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black",bg='#BAF2BA')
+username = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black",bg='white')
 username.place(x=45,y=110)
 username.insert(0,'Your Name')
 username.bind('<FocusIn>',on_enter_name)
