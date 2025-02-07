@@ -24,7 +24,7 @@ def show():
 root=Tk()
 root.geometry('643x562+50+50')
 # root.resizable(0,0)
-root.title = "UserSignup"
+root.title = "UserSignIn"
 # root.config(bg='#4A708B')
 bg1 = ImageTk.PhotoImage(file="images/bg2.png")
 bglabel=Label(root,image=bg1)
