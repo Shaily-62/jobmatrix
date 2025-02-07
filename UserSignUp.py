@@ -43,7 +43,7 @@ bglabel.place(x=0,y=0)
 
 username = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black",bg='white')
 username.place(x=45,y=110)
-username.insert(0,'Name')
+username.insert(0,'user Name')
 username.bind('<FocusIn>',on_enter_name)
 
 email = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black")
