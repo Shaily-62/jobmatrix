@@ -75,19 +75,19 @@ confirmpass.bind('<FocusIn>',conpass_enter)
 # creating the button.
 eyeicon=PhotoImage(file='icons/eye.png',height=20,width=25)
 eyebutton=Button(root,image=eyeicon,bd=0,bg="white",cursor='hand2',command=hide)
-eyebutton.place(x=240,y=230)
+eyebutton.place(x=280,y=230)
 
 
 signUpbt=Button(root,text='SignUp',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='green',cursor='hand2',bd=0)
 signUpbt.place(x=80,y=320,height=30,width=230)
 
 
-<<<<<<< HEAD
+# <<<<<<< HEAD
 signInbt=Button(root,text='SignIn',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='green',cursor='hand2',bd=0,activebackground='#81CE81')
 signInbt.place(x=260,y=500,height=30,width=110)
 
-=======
+# =======
 signInbt=Button(root,text='SignIN',font=('Segoe UI Symbol',9,'bold'),fg='white',bg='green',cursor='hand2',bd=0,activebackground='#81CE81',command=signinPage)
 signInbt.place(x=260,y=500,height=30,width=100)
->>>>>>> de198f0887cf8b5d4476132906e18bacfc5f73f7
+# >>>>>>> de198f0887cf8b5d4476132906e18bacfc5f73f7
 root.mainloop()
