@@ -24,6 +24,10 @@ def signupPage():
     root.destroy()
     import UserSignUp
 
+def homepage():
+    root.destroy()
+    import home
+
 root=Tk()
 root.geometry('643x562+50+50')
 # root.resizable(0,0)
@@ -56,7 +60,7 @@ eyebutton.place(x=550,y=249)
 forgetButton=Button(root,text="Forget Password?",bd=0,bg="#81CE81",cursor='hand2',font=('Segoe UI Symbol',8,'bold'))
 forgetButton.place(x=485,y=280)
 
-signinbt=Button(root,text='SignIn',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='green',cursor='hand2',bd=0)
+signinbt=Button(root,text='SignIn',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='green',cursor='hand2',bd=0,command=homepage)
 signinbt.place(x=350,y=325,height=30,width=230)
 
 orLine=Label(root,text="----------------OR----------------",font=('Segoe UI Symbol',16,'bold'),fg="green",bg="#81CE81")
