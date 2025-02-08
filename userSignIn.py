@@ -57,7 +57,7 @@ forgetButton=Button(root,text="Forget Password?",bd=0,bg="#81CE81",cursor='hand2
 forgetButton.place(x=485,y=280)
 
 signinbt=Button(root,text='SignIn',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='green',cursor='hand2',bd=0)
-signinbt.place(x=398,y=325,height=30,width=150)
+signinbt.place(x=350,y=325,height=30,width=230)
 
 orLine=Label(root,text="----------------OR----------------",font=('Segoe UI Symbol',16,'bold'),fg="green",bg="#81CE81")
 orLine.place(x=300,y=398)
