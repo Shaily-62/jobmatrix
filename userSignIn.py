@@ -19,7 +19,10 @@ def show():
     eyeicon.config(file='icons/eye.png')
     password.config(show='')
     eyebutton.config(command=hide)
- 
+
+def signupPage():
+    root.destroy()
+    import UserSignUp
 
 root=Tk()
 root.geometry('643x562+50+50')
@@ -30,8 +33,6 @@ bg1 = ImageTk.PhotoImage(file="images/bg2.png")
 bglabel=Label(root,image=bg1)
 bglabel.place(x=0,y=0)
 
-# headingLb=Label(root,text='SIGN IN',font=('Segoe UI Symbol',23,'bold'),bg="green",fg="white")
-# headingLb.place(x=460,y=50)
 
 username = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black")
 username.place(x=350,y=200)
@@ -64,7 +65,7 @@ orLine.place(x=300,y=398)
 signup=Label(root,text="Dont have an account?",font=('Segoe UI Symbol',11,'bold'),fg="green",bg="#81CE81")
 signup.place(x=300,y=485)
 
-signupbt=Button(root,text='Create Account',font=('Segoe UI Symbol',9,'bold'),fg='white',bg='green',cursor='hand2',bd=0,activebackground='#81CE81')
+signupbt=Button(root,text='Create Account',font=('Segoe UI Symbol',9,'bold'),fg='white',bg='green',cursor='hand2',bd=0,activebackground='#81CE81',command=signupPage)
 signupbt.place(x=480,y=485,height=30,width=150)
 
 root.mainloop()
