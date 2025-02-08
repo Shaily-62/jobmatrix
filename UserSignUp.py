@@ -31,6 +31,11 @@ def show():
     eyeicon.config(file='icons/eye.png')
     password.config(show='')
     eyebutton.config(command=hide)
+
+
+def signinPage():
+    root.destroy()
+    import UserSignIn
  
 
 root=Tk()
@@ -77,7 +82,6 @@ signUpbt=Button(root,text='SignUp',font=('Segoe UI Symbol',10,'bold'),fg='white'
 signUpbt.place(x=65,y=320,height=30,width=150)
 
 
-signInbt=Button(root,text='SignIN',font=('Segoe UI Symbol',9,'bold'),fg='white',bg='green',cursor='hand2',bd=0,activebackground='#81CE81')
+signInbt=Button(root,text='SignIN',font=('Segoe UI Symbol',9,'bold'),fg='white',bg='green',cursor='hand2',bd=0,activebackground='#81CE81',command=signinPage)
 signInbt.place(x=260,y=500,height=30,width=100)
-
 root.mainloop()
