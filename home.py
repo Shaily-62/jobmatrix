@@ -5,7 +5,7 @@ from PIL import ImageTk     #pil python image lib
 def Logout():
     root.destroy()
     import userSignIn
-    
+
 root=Tk()
 root.geometry('819x461+50+50')
 root.title = "UserSignIn"
@@ -18,6 +18,6 @@ logout=Button(root,text='Logout',font=('Segoe UI Symbol',13,'bold'),fg='red',cur
 logout.place(x=700,y=10,height=30,width=100)
 
 logouticon=PhotoImage(file='icons/logout.png')
-eyebutton=Button(root,image=logouticon,bd=0,cursor='hand2')
-eyebutton.place(x=780,y=10)
+logoutbtn=Button(root,image=logouticon,bd=0,cursor='hand2')
+logoutbtn.place(x=780,y=10)
 root.mainloop()
