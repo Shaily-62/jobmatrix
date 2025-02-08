@@ -42,27 +42,27 @@ bglabel=Label(root,image=bg1)
 bglabel.place(x=0,y=0)
 
 username = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black",bg='white')
-username.place(x=45,y=110)
+username.place(x=80,y=110)
 username.insert(0,'user Name')
 username.bind('<FocusIn>',on_enter_name)
 
 email = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black")
-email.place(x=45,y=150)
+email.place(x=80,y=150)
 email.insert(0,'Email_Id')
 email.bind('<FocusIn>',on_enter)
 
 phone = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black")
-phone.place(x=45,y=190)
+phone.place(x=80,y=190)
 phone.insert(0,'Phone no.')
 phone.bind('<FocusIn>',on_enter_phone)
 
 password = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black")
-password.place(x=45,y=230)
+password.place(x=80,y=230)
 password.insert(0,'password')
 password.bind('<FocusIn>',pass_enter)
 
 confirmpass = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black")
-confirmpass.place(x=45,y=270)
+confirmpass.place(x=80,y=270)
 confirmpass.insert(0,'Confirm Password')
 confirmpass.bind('<FocusIn>',conpass_enter)
 
@@ -74,10 +74,10 @@ eyebutton.place(x=240,y=230)
 
 
 signUpbt=Button(root,text='SignUp',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='green',cursor='hand2',bd=0)
-signUpbt.place(x=65,y=320,height=30,width=150)
+signUpbt.place(x=80,y=320,height=30,width=230)
 
 
-signInbt=Button(root,text='SignIN',font=('Segoe UI Symbol',9,'bold'),fg='white',bg='green',cursor='hand2',bd=0,activebackground='#81CE81')
-signInbt.place(x=260,y=500,height=30,width=100)
+signInbt=Button(root,text='SignIn',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='green',cursor='hand2',bd=0,activebackground='#81CE81')
+signInbt.place(x=260,y=500,height=30,width=110)
 
 root.mainloop()
