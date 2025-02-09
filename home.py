@@ -1,5 +1,6 @@
 from tkinter import*
 from PIL import ImageTk     #pil python image lib
+import pymysql                #pip install pymysql
 
 
 def Logout():

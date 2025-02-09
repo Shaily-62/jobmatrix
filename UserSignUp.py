@@ -1,9 +1,61 @@
 from tkinter import*
 from PIL import ImageTk     #pil python image lib
+import pymysql                #pip install pymysql
+from tkinter import messagebox
+
+#connection to database
+def connect_database():
+    if username.get()=='' or email.get()=='' or phone.get()=='' or password.get()=='' or confirmpass.get()=='' :
+        messagebox.showerror('Error','All Fields Are Required')
+
+    elif password.get() != confirmpass.get():
+        messagebox.showerror('error','Password and confirm password should be same')
+    
+    else:
+        try:
+            con = pymysql.connect(host='localhost' , user='root' , password='123456')
+            mycursor=con.cursor()
+        except:
+            messagebox.showerror('error' , 'database connectivity issues please try again')
+            return
+        
+        try:
+            query='CREATE DATABASE jobmatrix'
+            mycursor.execute(query)
+            query='USE jobmatrix'
+            mycursor.execute(query)
+            # query='CREATE TABLE User(id INT AUTO INCREMENT PRIMARY KEY NOT NULL,name VARCHAR(50) NOT NULL,email VARCHAR(100) UNIQUE,Phone VARCHAR(20),password varchar(25),CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP)'
+            # mycursor.execute(query)
+        except:
+              query='USE jobmatrix'
+              mycursor.execute(query)
+              mycursor.execute(query)
+
+        query='SELECT * FROM User where email=%s'
+        mycursor.execute(query,(email.get()))
+        row = mycursor.fetchone()
+
+        query='INSERT INTO User(name,email,Phone,password) values(%s,%s,%s,%s)'
+        mycursor.execute(query,(username.get(),email.get(),phone.get(),password.get()))
+        con.commit()
+        con.close()
+        messagebox.showinfo('Success','welcome to Job Matrix')
+        clear()     #we created clear function to clear all the data after the signin fron input fields
+        root.destroy()
+        import userSignIn
+                                         
 
 # difining the function
+
+def clear():
+    username.delete(0,END)
+    email.delete(0,END)
+    phone.delete(0,END)
+    password.delete(0,END)
+    confirmpass.delete(0,END)
+
 def on_enter_name(event):
-    if username.get()=='Your Name':
+    if username.get()=='Username':
         username.delete(0,END)
 
 def on_enter(event):
@@ -48,7 +100,7 @@ bglabel.place(x=0,y=0)
 
 username = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black",bg='white')
 username.place(x=80,y=110)
-username.insert(0,'user Name')
+username.insert(0,'Username')
 username.bind('<FocusIn>',on_enter_name)
 
 email = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black")
@@ -78,16 +130,16 @@ eyebutton=Button(root,image=eyeicon,bd=0,bg="white",cursor='hand2',command=hide)
 eyebutton.place(x=280,y=230)
 
 
-signUpbt=Button(root,text='SignUp',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='green',cursor='hand2',bd=0)
+signUpbt=Button(root,text='SignUp',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='green',cursor='hand2',bd=0,command=connect_database)
 signUpbt.place(x=80,y=320,height=30,width=230)
 
 
-# <<<<<<< HEAD
+
 signInbt=Button(root,text='SignIn',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='green',cursor='hand2',bd=0,activebackground='#81CE81')
 signInbt.place(x=260,y=500,height=30,width=110)
 
-# =======
+
 signInbt=Button(root,text='SignIN',font=('Segoe UI Symbol',9,'bold'),fg='white',bg='green',cursor='hand2',bd=0,activebackground='#81CE81',command=signinPage)
 signInbt.place(x=260,y=500,height=30,width=100)
-# >>>>>>> de198f0887cf8b5d4476132906e18bacfc5f73f7
+
 root.mainloop()
