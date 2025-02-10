@@ -21,7 +21,7 @@ def emphome():
         mycursor.execute(query,(email.get(),password.get()))
 
         row = mycursor.fetchone()
-        if row!=None:
+        if row==None:
             messagebox.showerror('error' , 'Invalid email and password ')
         else:
             messagebox.showinfo("welcome" , 'WELCOME TO JOB MATRIX')
@@ -53,6 +53,10 @@ def empsignupPage():
     root.destroy()
     import empsignup
 
+def backHomepage():
+    root.destroy()
+    import welcome
+
 root=Tk()
 root.geometry('861x461+50+50')
 # root.resizable(0,0)
@@ -82,8 +86,8 @@ eyeicon=PhotoImage(file='icons/eye.png',height=19,width=25)
 eyebutton=Button(root,image=eyeicon,bd=0,bg="white",cursor='hand2',command=hide)
 eyebutton.place(x=720,y=210)
 
-forgetButton=Button(root,text="Forget Password?",bd=0,bg="#81CE81",cursor='hand2',font=('Segoe UI Symbol',8,'bold'))
-forgetButton.place(x=635,y=240)
+# forgetButton=Button(root,text="Forget Password?",bd=0,bg="#81CE81",cursor='hand2',font=('Segoe UI Symbol',8,'bold'))
+# forgetButton.place(x=635,y=240)
 
 signinbt=Button(root,text='SignIn',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='blue',cursor='hand2',bd=0,command=emphome)
 signinbt.place(x=520,y=280,height=30,width=230)
@@ -94,5 +98,10 @@ orLine.place(x=440,y=350)
 
 signupbt=Button(root,text='Create Account',font=('Segoe UI Symbol',9,'bold'),fg='white',bg='blue',cursor='hand2',bd=0,activebackground='white',command=empsignupPage)
 signupbt.place(x=715,y=415,height=30,width=120)
+
+# creating back button
+backicon=PhotoImage(file='icons/back.png')
+backbtn=Button(root,image=backicon,bd=0,cursor='hand2',fg="black",bg="white",command=backHomepage)
+backbtn.place(x=10,y=415)
 
 root.mainloop()

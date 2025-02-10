@@ -11,7 +11,7 @@ root=Tk()
 root.geometry('861x461+50+50')
 root.title = "UserSignIn"
 
-bg1 = ImageTk.PhotoImage(file="images/home2.png")
+bg1 = ImageTk.PhotoImage(file="images/userhome.png")
 bglabel=Label(root,image=bg1)
 bglabel.place(x=0,y=0)
 
@@ -20,5 +20,5 @@ logout.place(x=700,y=10,height=30,width=100)
 
 logouticon=PhotoImage(file='icons/logout.png')
 logoutbtn=Button(root,image=logouticon,bd=0,cursor='hand2',command=Logout)
-logoutbtn.place(x=780,y=10)
+logoutbtn.place(x=790,y=10)
 root.mainloop()

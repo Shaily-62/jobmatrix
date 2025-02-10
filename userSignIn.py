@@ -21,7 +21,7 @@ def login_pageDB():
         mycursor.execute(query,(email.get(),password.get()))
 
         row = mycursor.fetchone()
-        if row!=None:
+        if row==None:
             messagebox.showerror('error' , 'Invalid email and password ')
         else:
             messagebox.showinfo("welcome" , 'WELCOME TO JOB MATRIX')
@@ -51,6 +51,10 @@ def show():
 def signupPage():
     root.destroy()
     import UserSignUp
+
+def backHomepage():
+    root.destroy()
+    import welcome
 
 # def homepage():
 #     root.destroy()
@@ -85,8 +89,8 @@ eyeicon=PhotoImage(file='icons/eye.png',height=19,width=25)
 eyebutton=Button(root,image=eyeicon,bd=0,bg="white",cursor='hand2',command=hide)
 eyebutton.place(x=550,y=250)
 
-forgetButton=Button(root,text="Forget Password?",bd=0,bg="#81CE81",cursor='hand2',font=('Segoe UI Symbol',8,'bold'))
-forgetButton.place(x=485,y=280)
+# forgetButton=Button(root,text="Forget Password?",bd=0,bg="#81CE81",cursor='hand2',font=('Segoe UI Symbol',8,'bold'))
+# forgetButton.place(x=485,y=280)
 
 signinbt=Button(root,text='SignIn',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='green',cursor='hand2',bd=0,command=login_pageDB)
 signinbt.place(x=350,y=325,height=30,width=230)
@@ -99,5 +103,10 @@ signup.place(x=300,y=485)
 
 signupbt=Button(root,text='Create Account',font=('Segoe UI Symbol',9,'bold'),fg='white',bg='green',cursor='hand2',bd=0,activebackground='#81CE81',command=signupPage)
 signupbt.place(x=480,y=485,height=30,width=150)
+
+# creating back button
+backicon=PhotoImage(file='icons/back.png')
+backbtn=Button(root,image=backicon,bd=0,cursor='hand2',fg="black",bg="white",command=backHomepage)
+backbtn.place(x=10,y=10)
 
 root.mainloop()
