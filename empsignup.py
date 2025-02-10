@@ -1,9 +1,63 @@
 from tkinter import*
 from PIL import ImageTk     #pil python image lib
+import pymysql                #pip install pymysql
+from tkinter import messagebox
+
+#database connection
+def connect_database():
+    if username.get()=='' or email.get()=='' or phone.get()=='' or password.get()=='' or confirmpass.get()=='' :
+        messagebox.showerror('Error','All Fields Are Required')
+
+    elif password.get() != confirmpass.get():
+        messagebox.showerror('error','Password and confirm password should be same')
+    
+    else:
+        try:
+            con = pymysql.connect(host='localhost' , user='root' , password='123456')
+            mycursor=con.cursor()
+        except:
+            messagebox.showerror('error' , 'database connectivity issues please try again')
+            return
+        
+        try:
+            # query='CREATE DATABASE jobmatrix'
+            # mycursor.execute(query)
+            query='USE jobmatrix'
+            mycursor.execute(query)
+            # query='CREATE TABLE User(id INT AUTO INCREMENT PRIMARY KEY NOT NULL,name VARCHAR(50) NOT NULL,email VARCHAR(100) UNIQUE,Phone VARCHAR(20),password varchar(25),CreatedAt TIMESTAMP DEFAULT CURRENT_TIMESTAMP)'
+            # mycursor.execute(query)
+        except:
+              query='USE jobmatrix'
+              mycursor.execute(query)
+
+        query='SELECT * FROM Employer where email=%s'
+        mycursor.execute(query,(email.get(),password.get()))
+        row = mycursor.fetchone()
+
+        # checking email exist or not 
+        if row != None:
+            messagebox.showerror('Error','email already exists')
+
+        else:
+            query='INSERT INTO Employer(Name,Email,Phone,password) values(%s,%s,%s,%s)'
+            mycursor.execute(query,(username.get(),email.get(),phone.get(),password.get()))
+            con.commit()
+            con.close()
+            messagebox.showinfo('Success','Account created Successfully')
+            clear()     #we created clear function to clear all the data after the signin fron input fields
+            root.destroy()
+            import empsignin
 
 # difining the function
+def clear():
+    username.delete(0,END)
+    email.delete(0,END)
+    phone.delete(0,END)
+    password.delete(0,END)
+    confirmpass.delete(0,END)
+
 def on_enter_name(event):
-    if username.get()=='user Name':
+    if username.get()=='Name':
         username.delete(0,END)
 
 def on_enter(event):
@@ -48,7 +102,7 @@ bglabel.place(x=0,y=0)
 
 username = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black",bg='white')
 username.place(x=110,y=140)
-username.insert(0,'user Name')
+username.insert(0,'Name')
 username.bind('<FocusIn>',on_enter_name)
 
 email = Entry(root,width=25,font=('Segoe UI Symbol',11,'bold'),bd=0,fg="black")
@@ -78,7 +132,7 @@ eyebutton=Button(root,image=eyeicon,bd=0,bg="white",cursor='hand2',command=hide)
 eyebutton.place(x=310,y=230)
 
 
-signUpbt=Button(root,text='SignUp',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='blue',cursor='hand2',bd=0)
+signUpbt=Button(root,text='SignUp',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='blue',cursor='hand2',bd=0,command=connect_database)
 signUpbt.place(x=110,y=300,height=30,width=230)
 
 
