@@ -35,14 +35,19 @@ def connect_database():
         mycursor.execute(query,(email.get()))
         row = mycursor.fetchone()
 
-        query='INSERT INTO User(name,email,Phone,password) values(%s,%s,%s,%s)'
-        mycursor.execute(query,(username.get(),email.get(),phone.get(),password.get()))
-        con.commit()
-        con.close()
-        messagebox.showinfo('Success','welcome to Job Matrix')
-        clear()     #we created clear function to clear all the data after the signin fron input fields
-        root.destroy()
-        import userSignIn
+        #checking email exist or not 
+        if row != None:
+            messagebox.showerror('Error','email already exists')
+
+        else:
+            query='INSERT INTO User(name,email,Phone,password) values(%s,%s,%s,%s)'
+            mycursor.execute(query,(username.get(),email.get(),phone.get(),password.get()))
+            con.commit()
+            con.close()
+            messagebox.showinfo('Success','Account created Successfully')
+            clear()     #we created clear function to clear all the data after the signin fron input fields
+            root.destroy()
+            import userSignIn
                                          
 
 # difining the function

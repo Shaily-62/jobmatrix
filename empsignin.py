@@ -63,11 +63,9 @@ forgetButton.place(x=635,y=240)
 signinbt=Button(root,text='SignIn',font=('Segoe UI Symbol',10,'bold'),fg='white',bg='blue',cursor='hand2',bd=0)
 signinbt.place(x=520,y=280,height=30,width=230)
 
-orLine=Label(root,text="--------------------OR--------------------",font=('Segoe UI Symbol',16,'bold'),fg="blue",bg="#81CE81")
+orLine=Label(root,text="--------------------OR--------------------",font=('Segoe UI Symbol',16,'bold'),fg="black",bg="deepskyblue")
 orLine.place(x=440,y=350)
 
-# signup=Label(root,text="Dont have an account?",font=('Segoe UI Symbol',11,'bold'),fg="green",bg="#81CE81")
-# signup.place(x=300,y=485)
 
 signupbt=Button(root,text='Create Account',font=('Segoe UI Symbol',9,'bold'),fg='white',bg='blue',cursor='hand2',bd=0,activebackground='white',command=empsignupPage)
 signupbt.place(x=715,y=415,height=30,width=120)

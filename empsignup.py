@@ -3,7 +3,7 @@ from PIL import ImageTk     #pil python image lib
 
 # difining the function
 def on_enter_name(event):
-    if username.get()=='Your Name':
+    if username.get()=='user Name':
         username.delete(0,END)
 
 def on_enter(event):

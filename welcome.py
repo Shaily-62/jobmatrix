@@ -2,6 +2,10 @@ from tkinter import*
 from PIL import ImageTk     #pil python image lib
 
 
+def Empsignin():
+    root.destroy()
+    import empsignin
+
 def signinPage():
     root.destroy()
     import userSignIn
@@ -15,7 +19,7 @@ bglabel=Label(root,image=bg1)
 bglabel.place(x=0,y=0)
 
 #employer login button
-employer=Button(root,text='Employer Login',font=('Segoe UI Symbol',14,'bold'),fg='black',bg='#007FFF',cursor='hand2',bd=0,command=signinPage)
+employer=Button(root,text='Employer Login',font=('Segoe UI Symbol',14,'bold'),fg='black',bg='#007FFF',cursor='hand2',bd=0,command=Empsignin)
 employer.place(x=170,y=280,height=35,width=200)
 
 #candidate login button
