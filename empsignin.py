@@ -53,15 +53,14 @@ def empsignupPage():
     root.destroy()
     import empsignup
 
-def backHomepage():
+def backwelcomepage():
     root.destroy()
     import welcome
 
 root=Tk()
 root.geometry('861x461+50+50')
-# root.resizable(0,0)
+root.resizable(0,0)
 root.title = "UserSignIn"
-# root.config(bg='#4A708B')
 bg1 = ImageTk.PhotoImage(file="images/empsignin.png")
 bglabel=Label(root,image=bg1)
 bglabel.place(x=0,y=0)
@@ -101,7 +100,7 @@ signupbt.place(x=715,y=415,height=30,width=120)
 
 # creating back button
 backicon=PhotoImage(file='icons/back.png')
-backbtn=Button(root,image=backicon,bd=0,cursor='hand2',fg="black",bg="white",command=backHomepage)
+backbtn=Button(root,image=backicon,bd=0,cursor='hand2',fg="black",bg="white",command=backwelcomepage)
 backbtn.place(x=10,y=415)
 
 root.mainloop()

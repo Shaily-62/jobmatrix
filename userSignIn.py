@@ -29,7 +29,7 @@ def login_pageDB():
             import UserHome
 
 
-# difining the function
+# defining the function
 def on_enter(event):
     if email.get()=='Email_Id':
         email.delete(0,END)
@@ -63,7 +63,7 @@ def backHomepage():
 root=Tk()
 root.geometry('643x562+50+50')
 # root.resizable(0,0)
-root.title = "UserSignIn"
+# root.title = "UserSignIn"
 # root.config(bg='#4A708B')
 bg1 = ImageTk.PhotoImage(file="images/bg2.png")
 bglabel=Label(root,image=bg1)
