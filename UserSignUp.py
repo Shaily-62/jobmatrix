@@ -29,7 +29,7 @@ def connect_database():
         except:
               query='USE jobmatrix'
               mycursor.execute(query)
-              mycursor.execute(query)
+            #   mycursor.execute(query)
 
         query='SELECT * FROM User where email=%s'
         mycursor.execute(query,(email.get()))

@@ -68,14 +68,9 @@ def add_job():
         root.destroy()
         import empHome
        
-           
 
-    #  def clear():
-    #         jobTitle.delete(0,END)
-    #         company.delete(0,END)
-    #         salary.delete(0,END)
-    #         location.delete(0,END)
-    #         desc.delete(0,END)
+
+
 
   
 root=Tk()

@@ -10,6 +10,14 @@ def postjob():
     root.destroy()
     import empPostJob
 
+def managejob():
+    root.destroy()
+    import EmpManageJobs
+
+def viewJobs():
+    root.destroy()
+    import EmpViewJob
+
 root=Tk()
 root.geometry('861x461+50+50')
 root.title = "UserSignIn"
@@ -35,10 +43,10 @@ postJobbtn.place(x=10,y=145)
 PINKpostJobbtn=Button(root,bd=0,text="POST A JOB",font=('Segoe UI Symbol',11,'bold'),cursor='hand2',bg="crimson",fg="white",command=postjob)
 PINKpostJobbtn.place(x=320,y=250)
 
-viewJobsbtn=Button(root,bd=0,text="VIEW JOBS",font=('Segoe UI Symbol',9,'bold'),cursor='hand2',bg="deepskyblue4",fg="white")
+viewJobsbtn=Button(root,bd=0,text="VIEW JOBS",font=('Segoe UI Symbol',9,'bold'),cursor='hand2',bg="deepskyblue4",fg="white",command=viewJobs)
 viewJobsbtn.place(x=110,y=145)
 
-manageJobs=Button(root,bd=0,text="MANAGE JOBS",font=('Segoe UI Symbol',9,'bold'),cursor='hand2',bg="deepskyblue4",fg="white")
+manageJobs=Button(root,bd=0,text="MANAGE JOBS",font=('Segoe UI Symbol',9,'bold'),cursor='hand2',bg="deepskyblue4",fg="white",command=managejob)
 manageJobs.place(x=200,y=145)
 
 manageCandi=Button(root,bd=0,text="MANAGE CANDIDATES",font=('Segoe UI Symbol',9,'bold'),cursor='hand2',bg="deepskyblue4",fg="white")

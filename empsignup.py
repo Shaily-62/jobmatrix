@@ -31,7 +31,7 @@ def connect_database():
               mycursor.execute(query)
 
         query='SELECT * FROM Employer where email=%s'
-        mycursor.execute(query,(email.get(),password.get()))
+        mycursor.execute(query,(email.get()))
         row = mycursor.fetchone()
 
         # checking email exist or not 
