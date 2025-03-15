@@ -1,6 +1,7 @@
 import tkinter as tk
 from tkinter import ttk, messagebox
 import pymysql
+from tkinter import*
 from PIL import ImageTk
 
 
@@ -53,6 +54,14 @@ def signupPage():
     root.destroy()
     import UserSignUp
 
+def on_enter(event):
+    if email.get()=='Email_Id':
+        email.delete(0,END)
+
+def pass_enter(event):
+    if password.get()=='password':
+        password.delete(0,END)
+
 # Create login window
 root = tk.Tk()
 root.geometry('643x562+50+50')
@@ -68,10 +77,14 @@ email = tk.Entry(root, width=25, font=('Segoe UI Symbol', 11, 'bold'), bd=0, fg=
 email.place(x=350, y=200)
 email.insert(0, 'Email_Id')
 
+email.bind('<FocusIn>',on_enter)
+
 # Password field
 password = tk.Entry(root, width=25, font=('Segoe UI Symbol', 11, 'bold'), bd=0, fg="black", show="*")
 password.place(x=350, y=250)
 password.insert(0, 'password')
+
+password.bind('<FocusIn>',pass_enter)
 
 # Sign-in button
 signinbt = tk.Button(root, text='SignIn', font=('Segoe UI Symbol', 10, 'bold'), fg='white', bg='green', cursor='hand2', bd=0, command=login_pageDB)
