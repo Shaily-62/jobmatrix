@@ -18,6 +18,12 @@ def viewJobs():
     root.destroy()
     import EmpViewJob
 
+def manageCandidates():
+    root.destroy()
+    import empManageCandidates
+
+
+
 root=Tk()
 root.geometry('861x461+50+50')
 root.title = "UserSignIn"
@@ -49,7 +55,7 @@ viewJobsbtn.place(x=110,y=145)
 manageJobs=Button(root,bd=0,text="MANAGE JOBS",font=('Segoe UI Symbol',9,'bold'),cursor='hand2',bg="deepskyblue4",fg="white",command=managejob)
 manageJobs.place(x=200,y=145)
 
-manageCandi=Button(root,bd=0,text="MANAGE CANDIDATES",font=('Segoe UI Symbol',9,'bold'),cursor='hand2',bg="deepskyblue4",fg="white")
+manageCandi=Button(root,bd=0,text="MANAGE CANDIDATES",font=('Segoe UI Symbol',9,'bold'),cursor='hand2',bg="deepskyblue4",fg="white",command=manageCandidates)
 manageCandi.place(x=320,y=145)
 
 

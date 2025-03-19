@@ -2,6 +2,10 @@ import tkinter as tk
 from tkinter import ttk
 import mysql.connector
 
+def backHomepage():
+    root.destroy()
+    import empHome
+
 # Database connection
 conn = mysql.connector.connect(
     host="localhost",
@@ -58,6 +62,12 @@ scroll_x.pack(side="bottom", fill="x")
 job_table.pack(expand=True, fill="both")
 
 fetch_jobs()
+
+# creating back button
+backicon=tk.PhotoImage(file='icons/back.png')
+backbtn=tk.Button(root,image=backicon,bd=0,cursor='hand2',fg="black",bg="white",command=backHomepage)
+backbtn.place(x=10,y=10)
+root.mainloop()
 root.mainloop()
 
 # Close database connection on exit

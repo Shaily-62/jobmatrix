@@ -1,6 +1,12 @@
 import tkinter as tk
+from PIL import ImageTk 
 from tkinter import ttk, messagebox
 import pymysql
+
+def backhomepage():
+    job_search_window.destroy()
+    import UserHome
+  
 
 # Global variable to store logged-in user ID
 logged_in_user_id = 1  # Assuming a user is already logged in
@@ -48,6 +54,11 @@ def open_job_search_page():
     job_list.pack(fill="both", expand=True)
 
     ttk.Button(job_search_window, text="Apply", command=apply_job).pack(pady=10)
+
+    # creating back button
+    backicon=tk.PhotoImage(file='icons/back.png')
+    backbtn=tk.Button(job_search_window,image=backicon,bd=0,cursor='hand2',fg="black",bg="white",command=backhomepage)
+    backbtn.place(x=10,y=370)
 
     job_search_window.mainloop()
 
