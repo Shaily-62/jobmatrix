@@ -22,7 +22,7 @@ root.geometry('800x450')
 root.configure(bg="white")  # Set background color
 
 # Title Label
-title_label = tk.Label(root, text="View Jobs", font=("Arial", 16, "bold"), bg="white", fg="black")
+title_label = tk.Label(root, text="Available Job Listings", font=("Arial", 16, "bold"), bg="white", fg="black")
 title_label.pack(pady=10)
 
 def fetch_jobs():

@@ -1,12 +1,14 @@
 import tkinter as tk
-from PIL import ImageTk 
+from PIL import ImageTk
 from tkinter import ttk, messagebox
 import pymysql
+from tkinter import filedialog
+
 
 def backhomepage():
     job_search_window.destroy()
     import UserHome
-  
+
 
 # Global variable to store logged-in user ID
 logged_in_user_id = 1  # Assuming a user is already logged in
@@ -20,47 +22,60 @@ def connect_db():
         messagebox.showerror("Database Error", f"Error: {e}")
         return None
 
+
 # Function to open the job search page
 def open_job_search_page():
     global job_search_window, title_var, location_var, salary_var, job_list
-    
+
     job_search_window = tk.Tk()
-    job_search_window.title("Job Search")
-    job_search_window.geometry("800x400")
-    job_search_window.configure(bg="#f0f0f0")
+    job_search_window.title("Job Search Portal")
+    job_search_window.geometry("1000x550")
+    job_search_window.configure(bg="#e6fdff")  # Light blue background
 
-    frame = ttk.Frame(job_search_window, padding=10)
-    frame.pack(fill="x")
+    heading = tk.Label(job_search_window, text="Find Your Dream Job", font=("Helvetica", 20, "bold"), bg="#e6f2ff", fg="#003366")
+    heading.pack(pady=20)
 
-    ttk.Label(frame, text="Job Title:").grid(row=0, column=0, padx=5, pady=5)
+    # Search Frame
+    frame = ttk.Frame(job_search_window, padding=20)
+    frame.pack(pady=10)
+
+    ttk.Label(frame, text="Job Title:").grid(row=0, column=0, padx=8, pady=10)
     title_var = tk.StringVar()
-    ttk.Entry(frame, textvariable=title_var).grid(row=0, column=1, padx=5, pady=5)
+    ttk.Entry(frame, textvariable=title_var, width=20).grid(row=0, column=1, padx=8)
 
-    ttk.Label(frame, text="Location:").grid(row=0, column=2, padx=5, pady=5)
+    ttk.Label(frame, text="Location:").grid(row=0, column=2, padx=8)
     location_var = tk.StringVar()
-    ttk.Entry(frame, textvariable=location_var).grid(row=0, column=3, padx=5, pady=5)
+    ttk.Entry(frame, textvariable=location_var, width=20).grid(row=0, column=3, padx=8)
 
-    ttk.Label(frame, text="Min Salary:").grid(row=0, column=4, padx=5, pady=5)
+    ttk.Label(frame, text="Min Salary:").grid(row=0, column=4, padx=8)
     salary_var = tk.StringVar()
-    ttk.Entry(frame, textvariable=salary_var).grid(row=0, column=5, padx=5, pady=5)
+    ttk.Entry(frame, textvariable=salary_var, width=15).grid(row=0, column=5, padx=8)
 
-    ttk.Button(frame, text="Search", command=search_jobs).grid(row=0, column=6, padx=5, pady=5)
+    ttk.Button(frame, text="Search", command=search_jobs).grid(row=0, column=6, padx=8)
 
+    # Job list table
     columns = ("Job ID", "Job Title", "Location", "Salary")
-    job_list = ttk.Treeview(job_search_window, columns=columns, show="headings")
+    job_list = ttk.Treeview(job_search_window, columns=columns, show="headings", height=10)
     for col in columns:
         job_list.heading(col, text=col)
-        job_list.column(col, width=150)
-    job_list.pack(fill="both", expand=True)
+        job_list.column(col, anchor="center", width=200)
+    job_list.pack(padx=20, pady=10, fill="x")
 
-    ttk.Button(job_search_window, text="Apply", command=apply_job).pack(pady=10)
+    # Apply button
+    apply_btn = ttk.Button(job_search_window, text="Apply for Selected Job", command=apply_job)
+    apply_btn.pack(pady=10)
 
-    # creating back button
-    backicon=tk.PhotoImage(file='icons/back.png')
-    backbtn=tk.Button(job_search_window,image=backicon,bd=0,cursor='hand2',fg="black",bg="white",command=backhomepage)
-    backbtn.place(x=10,y=370)
+    # Back Button
+    try:
+        backicon = ImageTk.PhotoImage(file='icons/back.png')
+        backbtn = tk.Button(job_search_window, image=backicon, bd=0, cursor='hand2', bg="#e6f2ff", command=backhomepage)
+        backbtn.image = backicon  # Keep a reference
+        backbtn.place(x=10, y=500)
+    except Exception as e:
+        print("Back icon not loaded:", e)
 
     job_search_window.mainloop()
+
 
 # Function to search jobs
 def search_jobs():
@@ -99,7 +114,8 @@ def search_jobs():
     else:
         messagebox.showinfo("No Results", "No matching jobs found.")
 
-# Function to apply for a job
+
+# Function to apply for a selected job
 def apply_job():
     if logged_in_user_id is None:
         messagebox.showerror("Login Required", "Please log in to apply for jobs.")
@@ -111,11 +127,17 @@ def apply_job():
         return
 
     job_id = job_list.item(selected_item, "values")[0]
-    
+
     try:
         job_id = int(job_id)
     except ValueError:
         messagebox.showerror("Error", "Invalid job ID format.")
+        return
+
+    resume_path = filedialog.askopenfilename(filetypes=[("PDF files", "*.pdf"), ("Word files", "*.docx")])
+    
+    if not resume_path:
+        messagebox.showwarning("Resume Required", "You must upload a resume to apply for this job.")
         return
 
     conn = connect_db()
@@ -129,12 +151,13 @@ def apply_job():
     if existing_application:
         messagebox.showinfo("Application Error", "You have already applied for this job.")
     else:
-        query = "INSERT INTO applications (job_id, users, status) VALUES (%s, %s, 'pending')"
-        cursor.execute(query, (job_id, logged_in_user_id))
+        query = "INSERT INTO applications (job_id, users, status, resume_path) VALUES (%s, %s, 'pending', %s)"
+        cursor.execute(query, (job_id, logged_in_user_id, resume_path))
         conn.commit()
-        messagebox.showinfo("Application Submitted", "You have successfully applied for the job.")
+        messagebox.showinfo("Application Submitted", "You have successfully applied for the job with the uploaded resume.")
 
     conn.close()
 
-# Open job search page without login
+
+# Run the job search page
 open_job_search_page()
