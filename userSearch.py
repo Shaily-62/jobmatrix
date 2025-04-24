@@ -116,6 +116,7 @@ def search_jobs():
 
 
 # Function to apply for a selected job
+# Function to apply for a selected job
 def apply_job():
     if logged_in_user_id is None:
         messagebox.showerror("Login Required", "Please log in to apply for jobs.")
@@ -135,7 +136,7 @@ def apply_job():
         return
 
     resume_path = filedialog.askopenfilename(filetypes=[("PDF files", "*.pdf"), ("Word files", "*.docx")])
-    
+
     if not resume_path:
         messagebox.showwarning("Resume Required", "You must upload a resume to apply for this job.")
         return
@@ -151,12 +152,23 @@ def apply_job():
     if existing_application:
         messagebox.showinfo("Application Error", "You have already applied for this job.")
     else:
-        query = "INSERT INTO applications (job_id, users, status, resume_path) VALUES (%s, %s, 'pending', %s)"
-        cursor.execute(query, (job_id, logged_in_user_id, resume_path))
+        # Insert application with resume path
+        cursor.execute(
+            "INSERT INTO applications (job_id, users, status, resume_path) VALUES (%s, %s, 'pending', %s)",
+            (job_id, logged_in_user_id, resume_path)
+        )
+
+        # Also update the User table with the latest resume_path
+        cursor.execute(
+            "UPDATE User SET resume_path = %s WHERE id = %s",
+            (resume_path, logged_in_user_id)
+        )
+
         conn.commit()
         messagebox.showinfo("Application Submitted", "You have successfully applied for the job with the uploaded resume.")
 
     conn.close()
+
 
 
 # Run the job search page

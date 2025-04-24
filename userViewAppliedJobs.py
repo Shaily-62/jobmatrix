@@ -13,7 +13,7 @@ def connect_db():
         return None
 
 # Replace this with the actual logged-in user ID after login
-logged_in_user_id = 1  # Change dynamically based on login session
+logged_in_user_id =1   # Change dynamically based on login session
 
 # Function to fetch applied jobs
 def fetch_applied_jobs():

@@ -4,7 +4,7 @@ import pymysql
 from tkinter import filedialog, messagebox
 import os
 
-logged_in_user_id = 1 
+logged_in_user_id = 1
 
 def set_user_id(user_id):
     global logged_in_user_id
